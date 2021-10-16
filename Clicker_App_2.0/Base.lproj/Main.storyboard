@@ -255,9 +255,11 @@
                         <outlet property="pointsLabel" destination="OUI-Yp-rdv" id="2hT-8V-CMU"/>
                         <outlet property="timeLeftLabel" destination="Csf-t3-FT3" id="c2U-hV-hBs"/>
                         <segue destination="xvs-wS-O4p" kind="show" identifier="showResults" id="dHM-2A-NsG"/>
+                        <segue destination="kXo-ZG-fRD" kind="unwind" identifier="LeaveGame" unwindAction="BackToStart1:" id="AiJ-fh-hZh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="kXo-ZG-fRD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1786" y="100"/>
         </scene>

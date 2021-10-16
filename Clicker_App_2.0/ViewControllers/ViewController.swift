@@ -7,17 +7,6 @@
 
 import UIKit
 
-//public extension UIAlertController {
-//    func show() {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let vc = UIViewController()
-//        vc.view.backgroundColor = .clear
-//        appDelegate.alertWindow.rootViewController = vc
-//        appDelegate.alertWindow.makeKeyAndVisible()
-//        vc.present(self, animated: true, completion: nil)
-//    }
-//}
-
 class ViewController: UIViewController {
     
     var addon = 1
@@ -26,7 +15,7 @@ class ViewController: UIViewController {
     var timeLeft = 10.00
     var timer = Timer()
     var showalert = false
-    let timeralert = UIAlertController(title: "Are you sure?", message: "Changes may not be saved", preferredStyle: .alert)
+
     
     @IBOutlet weak var CounterLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
@@ -36,27 +25,34 @@ class ViewController: UIViewController {
     }
     @IBAction func LeaveGame(_ sender: Any) {
         self.timer.invalidate()
-        
+        let timeralert = UIAlertController(title: "Are you sure?",
+                                           message: "Changes may not be saved",
+                                           preferredStyle: .alert)
         timeralert.addAction(UIAlertAction(title: "Continue",
                                            style: .destructive,
-                                           handler: nil))
+                                           handler:
+                                            {
+            (_) in
+            self.performSegue(withIdentifier: "LeaveGame", sender: self)
+            
+        }))
         timeralert.addAction(UIAlertAction(title: "Cancel",
                                            style: .cancel,
-                                           handler: nil))
-        self.present(self.timeralert, animated: true, completion: completionfunc)
-        //        timeralert.show()
+                                           handler: {
+            (_) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(timeralert, animated: true, completion: nil)
     }
     @IBOutlet weak var pointsLabel: UILabel!
-    
-    func completionfunc() {
-        if true == true {
-        }
-    }
     
     
     func points() {
         if counter >= 10 {
             pointsLabel.text = "Points: \(String(counter / 10))"
+        } else {
+            pointsLabel.text = "Points: 0 ;-;"
         }
     }
     
@@ -89,28 +85,10 @@ class ViewController: UIViewController {
         configureitems()
         CounterLabel.text = "\("$" + String(counter))"
         timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeft))"
-        //        let fakealert = UIAlertController(title: "Testing", message: "Testing", preferredStyle: .alert)
-        //        self.present(fakealert, animated: true, completion: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if self.isMovingFromParent {
-            
-        }
-        //        let timeralert = UIAlertController(title: "Are you sure?", message: "Changes may not be saved", preferredStyle: .alert)
-        //        timeralert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: nil))
-        //        timeralert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        //        self.present(timeralert, animated: true, completion: nil)
-        self.timer.invalidate()
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
-        //        let timeralert = UIAlertController(title: "Are you sure?", message: "Changes may not be saved", preferredStyle: .alert)
-        //        timeralert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: nil))
-        //        timeralert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        //        self.present(timeralert, animated: true, completion: nil)
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (_) in
             self.timeLeft -= 0.01
             if self.timeLeft <= 0 {
