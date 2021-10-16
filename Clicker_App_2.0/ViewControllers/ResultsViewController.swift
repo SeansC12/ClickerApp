@@ -12,20 +12,26 @@ class ResultsViewController: UIViewController {
     var moneyearned : Int!
     var numberofclicks : Int!
     var allocatedTime : Double!
+    
+    @IBOutlet weak var clicksLabel: UILabel!
+    
+    @IBOutlet weak var clicksPerSecondLabel: UILabel!
+    
     func clickspersecond() -> String {
         let clickspersecond : String = String(format : "%.2f", Double(numberofclicks)/allocatedTime)
         return clickspersecond
     }
     
-    @IBOutlet weak var clicksLabel: UILabel!
-    @IBOutlet weak var clicksPerSecondLabel: UILabel!
+    func configureitems() {
+        self.navigationItem.hidesBackButton = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureitems()
         // Do any additional setup after loading the view.
-        clicksLabel.text = "Money Earned: \(moneyearned!)"
-        clicksPerSecondLabel.text = "Money Earned Per Second: \(clickspersecond())"
+        clicksLabel.text = "Amount Earned: $\(moneyearned!)"
+        clicksPerSecondLabel.text = "Amount Earned Per Second: $\(clickspersecond())"
     }
     
     

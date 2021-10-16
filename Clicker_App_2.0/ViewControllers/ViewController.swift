@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var addon = 1
     var clicks = 0
     var counter = 0
+    var totaltime = 10.00
     var timeLeft = 10.00
     var timeLeftToResume = 10.00
     var timer = Timer()
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
                                            handler: { [self]
             (_) in
             self.dismiss(animated: true, completion: nil)
-            for i in 1...10 {
+            for i in 1...20 {
                 if (i % 2) != 0 {
                     self.timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeftToResume))"
                     self.resumetimer()
@@ -66,8 +67,6 @@ class ViewController: UIViewController {
     func points() {
         if counter >= 10 {
             pointsLabel.text = "Points: \(String(counter / 10))"
-        } else {
-            pointsLabel.text = "Points: 0 ;-;"
         }
     }
     
@@ -83,10 +82,6 @@ class ViewController: UIViewController {
     
     func configureitems() {
         self.navigationItem.hidesBackButton = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Leave Game",
-                                                           style: .plain,
-                                                           target: nil,
-                                                           action: #selector(LeaveButtonTapped))
     }
     
     @objc func LeaveButtonTapped() {
@@ -126,8 +121,11 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        timeLeft = totaltime
+        timeLeftToResume = totaltime
         super.viewDidLoad()
         configureitems()
+        pointsLabel.text = "Points: 0 ;-;"
         CounterLabel.text = "\("$" + String(counter))"
         timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeft))"
     }
@@ -142,7 +140,7 @@ class ViewController: UIViewController {
             let destinationViewController =
             segue.destination as! ResultsViewController
             destinationViewController.numberofclicks = self.counter
-            destinationViewController.allocatedTime = self.timeLeft
+            destinationViewController.allocatedTime = self.totaltime
             destinationViewController.moneyearned = self.clicks
         }
     }
