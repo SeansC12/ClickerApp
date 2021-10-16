@@ -13,16 +13,23 @@ class ViewController: UIViewController {
     var clicks = 0
     var counter = 0
     var timeLeft = 10.00
+    var timeLeftToResume = 10.00
     var timer = Timer()
+    var timer2 = Timer()
     var showalert = false
-
+    
     
     @IBOutlet weak var CounterLabel: UILabel!
+    
+    @IBOutlet weak var pointsLabel: UILabel!
+    
     @IBOutlet weak var timeLeftLabel: UILabel!
+    
     @IBAction func ButtonClicked(_ sender: Any) {
         incrementCounter()
         clicks += 1
     }
+    
     @IBAction func LeaveGame(_ sender: Any) {
         self.timer.invalidate()
         let timeralert = UIAlertController(title: "Are you sure?",
@@ -38,15 +45,23 @@ class ViewController: UIViewController {
         }))
         timeralert.addAction(UIAlertAction(title: "Cancel",
                                            style: .cancel,
-                                           handler: {
+                                           handler: { [self]
             (_) in
             self.dismiss(animated: true, completion: nil)
+            for i in 1...10 {
+                if (i % 2) != 0 {
+                    self.timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeftToResume))"
+                    self.resumetimer()
+                } else {
+                    self.timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeft))"
+                    self.starttimer()
+                }
+            }
+            
         }))
         
         self.present(timeralert, animated: true, completion: nil)
     }
-    @IBOutlet weak var pointsLabel: UILabel!
-    
     
     func points() {
         if counter >= 10 {
@@ -76,7 +91,37 @@ class ViewController: UIViewController {
     
     @objc func LeaveButtonTapped() {
         print("hello world")
-        //        self.performSegue(withIdentifier: "BackToStart1", sender: self)
+    }
+    
+    @objc func selectorfunc() {
+        if true == true {
+        }
+    }
+    
+    func resumetimer() {
+        timeLeftToResume = timeLeft
+        self.timer.invalidate()
+        self.timer2 = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (_) in
+            self.timeLeftToResume -= 0.01
+            if self.timeLeftToResume <= 0 {
+                self.timer2.invalidate()
+                self.performSegue(withIdentifier: "showResults", sender: nil)
+            }
+            self.timeLeftLabel.text = "TimeLeft: \(String(format:"%.2f",self.timeLeftToResume))"
+        })
+    }
+    
+    func starttimer() {
+        timeLeft = timeLeftToResume
+        self.timer2.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (_) in
+            self.timeLeft -= 0.01
+            if self.timeLeft <= 0 {
+                self.timer.invalidate()
+                self.performSegue(withIdentifier: "showResults", sender: nil)
+            }
+            self.timeLeftLabel.text = "TimeLeft: \(String(format:"%.2f",self.timeLeft))"
+        })
     }
     
     
@@ -89,14 +134,7 @@ class ViewController: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (_) in
-            self.timeLeft -= 0.01
-            if self.timeLeft <= 0 {
-                self.timer.invalidate()
-                self.performSegue(withIdentifier: "showResults", sender: nil)
-            }
-            self.timeLeftLabel.text = "TimeLeft: \(String(format:"%.2f",self.timeLeft))"
-        })
+        starttimer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
