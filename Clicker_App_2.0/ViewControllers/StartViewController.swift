@@ -22,19 +22,24 @@ class StartViewController: UIViewController {
     @IBAction func BackToStart2(_ seg: UIStoryboardSegue) {
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureitems()
     }
     
     private func configureitems() {
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(
-//            image: UIImage(systemName: "gear"),
-//            style: .done,
-//            target: nil,
-//            action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "gear"),
+            style: .done,
+            target: self,
+            action: #selector(SettingsPressed))
+        
     }
-
+    
+    @objc func SettingsPressed() {
+        self.performSegue(withIdentifier: "SettingsPressed", sender: self)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pressedPlay" {

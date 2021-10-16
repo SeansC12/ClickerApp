@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14156365271AA5360031EED9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14156364271AA5350031EED9 /* SettingsViewController.swift */; };
 		143F748126EF384200288D2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F748026EF384200288D2A /* AppDelegate.swift */; };
 		143F748326EF384200288D2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F748226EF384200288D2A /* SceneDelegate.swift */; };
 		143F748526EF384200288D2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F748426EF384200288D2A /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14156364271AA5350031EED9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		143F747D26EF384200288D2A /* Clicker_App_2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clicker_App_2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		143F748026EF384200288D2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		143F748226EF384200288D2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				149C4FEF2717F1E5005D0D5D /* StartViewController.swift */,
+				14156364271AA5350031EED9 /* SettingsViewController.swift */,
 				143F748426EF384200288D2A /* ViewController.swift */,
 				149C4FF127180D99005D0D5D /* ShopViewController.swift */,
 				143F749426EF449800288D2A /* ResultsViewController.swift */,
@@ -156,6 +159,7 @@
 			files = (
 				143F748526EF384200288D2A /* ViewController.swift in Sources */,
 				149C4FF02717F1E5005D0D5D /* StartViewController.swift in Sources */,
+				14156365271AA5360031EED9 /* SettingsViewController.swift in Sources */,
 				143F748126EF384200288D2A /* AppDelegate.swift in Sources */,
 				143F748326EF384200288D2A /* SceneDelegate.swift in Sources */,
 				149C4FF227180D99005D0D5D /* ShopViewController.swift in Sources */,
