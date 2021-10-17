@@ -9,11 +9,13 @@ import UIKit
 
 class StartViewController: UIViewController {
     
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    
     @IBAction func playButton(_ sender: Any) {
         self.performSegue(withIdentifier: "pressedPlay", sender: self)
     }
     @IBAction func shopButton(_ sender: Any) {
-        performSegue(withIdentifier: "pressedShop", sender: nil)
+        performSegue(withIdentifier: "pressedShop", sender: self)
     }
     @IBAction func creditsButton(_ sender: Any) {
     }
@@ -26,6 +28,10 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureitems()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        delegate.w.resetCounter()
     }
     
     private func configureitems() {

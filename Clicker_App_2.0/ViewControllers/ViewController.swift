@@ -8,17 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    var addon = 1
+
     var clicks = 0
-    var counter = 0
     var totaltime = 10.00
-    var timeLeft = 10.00
     var timeLeftToResume = 10.00
     var timer = Timer()
-    var timer2 = Timer()
-    var showalert = false
-    
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var CounterLabel: UILabel!
     
@@ -55,7 +50,7 @@ class ViewController: UIViewController {
         self.present(timeralert, animated: true, completion: nil)
     }
     
-    func resumetimer() {
+    private func resumetimer() {
         self.timer.invalidate()
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (_) in
             self.timeLeftToResume -= 0.01
@@ -63,47 +58,34 @@ class ViewController: UIViewController {
                 self.timer.invalidate()
                 self.performSegue(withIdentifier: "showResults", sender: nil)
             }
-            self.timeLeftLabel.text = "TimeLeft: \(String(format:"%.2f",self.timeLeftToResume))"
+            self.timeLeftLabel.text = "TimeLeft: \(String(format:"%.2f", self.timeLeftToResume))"
         })
     }
     
-    func points() {
-        if counter >= 10 {
-            pointsLabel.text = "Points: \(String(counter / 10))"
+    private func points() {
+        if delegate.w.counter >= 10 {
+            pointsLabel.text = "Points: \(String(delegate.w.currentBalance()))"
         }
     }
     
-    func incrementCounter() {
-        counter += addon
-        if counter % 10 == 0 {
-            addon += 1
-        }
+    private func incrementCounter() {
+        let counter : Int = delegate.w.incrementCounter()
         CounterLabel.text = "\("$" + String(counter))"
         self.view.backgroundColor = UIColor(red: CGFloat(Double.random(in: 0...1)), green: CGFloat(Double.random(in: 0...1)), blue: CGFloat(Double.random(in: 0...1)), alpha: 1)
         points()
     }
     
-    func configureitems() {
+    private func configureitems() {
         self.navigationItem.hidesBackButton = true
-    }
-    
-    @objc func LeaveButtonTapped() {
-        print("hello world")
-    }
-    
-    @objc func selectorfunc() {
-        if true == true {
-        }
+        timeLeftToResume = totaltime
+        pointsLabel.text = "Points: 0 ;-;"
+        CounterLabel.text = "$0"
+        timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeftToResume))"
     }
     
     override func viewDidLoad() {
-        timeLeft = totaltime
-        timeLeftToResume = totaltime
         super.viewDidLoad()
         configureitems()
-        pointsLabel.text = "Points: 0 ;-;"
-        CounterLabel.text = "\("$" + String(counter))"
-        timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeft))"
     }
     
     
@@ -115,9 +97,9 @@ class ViewController: UIViewController {
         if segue.identifier == "showResults" {
             let destinationViewController =
             segue.destination as! ResultsViewController
-            destinationViewController.numberofclicks = self.counter
+            destinationViewController.numberofclicks = self.clicks
             destinationViewController.allocatedTime = self.totaltime
-            destinationViewController.moneyearned = self.clicks
+            destinationViewController.moneyearned = self.delegate.w.counter
         }
     }
 }

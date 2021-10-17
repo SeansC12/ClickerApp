@@ -9,18 +9,27 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    let alertWindow: UIWindow = {
-        let win = UIWindow(frame: UIScreen.main.bounds)
-        win.windowLevel = UIWindow.Level.alert + 1
-        return win
-    }()
-
+    
+    let w : Wallet = Wallet()
+    let a : PriceMenu = PriceMenu()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        w.addPowerUp(powerUp: PowerUpTypes.TIME_FREEZE)
+        w.addPowerUp(powerUp: PowerUpTypes.EXPLOSION)
+        w.addPowerUp(powerUp: PowerUpTypes.EXPLOSION)
+        w.addPowerUp(powerUp: PowerUpTypes.EXPLOSION)
+        w.addPowerUp(powerUp: PowerUpTypes.EXPLOSION)
+        
+        let p : PowerUpTypes = w.usePowerUp(powerUp: PowerUpTypes.MEGA_NUKE)
+        print(p)
+        let f : Int = a.generatePriceList(PowerUpType: PowerUpTypes.TIME_FREEZE)
+        print(f)
         return true
     }
 
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
