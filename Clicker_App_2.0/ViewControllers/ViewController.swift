@@ -57,6 +57,7 @@ class ViewController: UIViewController {
             if self.timeLeftToResume <= 0 {
                 self.timer.invalidate()
                 self.performSegue(withIdentifier: "showResults", sender: nil)
+                self.delegate.w.addtoTotalThePoints()
             }
             self.timeLeftLabel.text = "TimeLeft: \(String(format:"%.2f", self.timeLeftToResume))"
         })
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
     
     private func points() {
         if delegate.w.counter >= 10 {
-            pointsLabel.text = "Points: \(String(delegate.w.currentBalance()))"
+            pointsLabel.text = "Points: \(String(delegate.w.pointsGained()))"
         }
     }
     

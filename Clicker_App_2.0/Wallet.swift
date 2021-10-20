@@ -5,6 +5,7 @@
 //  Created by SEAN ULRIC BUGUINA CHUA stu on 17/10/21.
 //
 
+import Foundation
 public class Wallet {
     
     //balance is the money-system in the whole game, while counter is the money-system within that 10 seconds or within the "game"
@@ -13,8 +14,10 @@ public class Wallet {
     private var _powerUps : [PowerUpTypes] = []
     private var _counter : Int = 0
     private var _addon : Int = 1
+    private var _totalMoney : Int = 0
+    private var p = PriceMenu()
     
-    var counter :Int {
+    var counter : Int {
         get { return _counter }
     }
     func incrementCounter() -> Int {
@@ -25,9 +28,18 @@ public class Wallet {
         return _counter
     }
     
-    func currentBalance() -> Int {
+    func pointsGained() -> Int {
         _balance = (_counter/10)
         return _balance
+    }
+    
+    func addtoTotalThePoints() -> Int {
+        _totalMoney += _balance
+        return _totalMoney
+    }
+    
+    func getTotalMoney() -> Int {
+        return _totalMoney
     }
     
     func resetCounter() {
@@ -52,5 +64,20 @@ public class Wallet {
         return usePowerUp
     }
     
+    func buyPowerUp(powerUp : PowerUpTypes) {
+        let price = p.generatePriceList(PowerUpType: powerUp)
+        _totalMoney -= price
+        addPowerUp(powerUp: powerUp)
+        print("this ->\(_powerUps)<- ->\(_powerUps.count)<- ")
+    }
     
+    func canPayOrCannotPay(powerUp : PowerUpTypes) -> Bool {
+        let price = p.generatePriceList(PowerUpType: powerUp)
+        if (_totalMoney - price) < 0 {
+            return false
+        } else {
+            return true
+        }
+    }
 }
+

@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CE79C0FC-DE8F-4E9F-825E-C31F8F9EB30F"
+            uuid = "D6DFFFE5-EB7D-452A-A66C-AEA503517451"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Clicker_App_2.0/Wallet.swift"
+            filePath = "Clicker_App_2.0/ViewControllers/ShopViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "currentBalance()"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "TIME_FREEZEpressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

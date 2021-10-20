@@ -9,43 +9,75 @@ import UIKit
 
 class ShopViewController: UIViewController {
     
-//    let w : Wallet = Wallet()
-//    let p : PriceMenu = PriceMenu()
+    var selectedPowerUP : PowerUpTypes = PowerUpTypes.NOTHING
     let delegate = UIApplication.shared.delegate as! AppDelegate
+    let PurchasingAlert = UIAlertController(title: "Are you sure?",
+                                            message: "Purchases cannot be undone",
+                                            preferredStyle: .alert)
+    let NotEnoughMoneyAlert = UIAlertController(title: "You do not have enough money",
+                                                message: "Too poor, peasant",
+                                                preferredStyle: .alert)
     
-    @IBAction func TIME_FREEZEpressed(_ sender: Any) {
-        delegate.w.addPowerUp(powerUp: PowerUpTypes.TIME_FREEZE)
-        let PurchasingAlert = UIAlertController(title: "Are you sure?",
-                                        message: "Purchases cannot be undone",
-                                        preferredStyle: .alert)
+    func configureAlerts() {
         PurchasingAlert.addAction(UIAlertAction(title: "Continue",
-                                        style: .destructive,
-                                        handler: nil)) // TODO : Log powerup in inventory
+                                                style: .destructive,
+                                                handler:
+                                                    { [self]
+            (_) in
+            delegate.w.buyPowerUp(powerUp: selectedPowerUP)
+            balanceCounter.text = "$\(delegate.w.getTotalMoney())"
+        }))
         PurchasingAlert.addAction(UIAlertAction(title: "Cancel",
-                                        style: .cancel,
-                                        handler:
-                                            { [self]
+                                                style: .cancel,
+                                                handler:
+                                                    { [self]
             (_) in
             self.dismiss(animated: true, completion: nil)
         }))
-        self.present(PurchasingAlert, animated: true, completion: nil)
+        
+        NotEnoughMoneyAlert.addAction(UIAlertAction(title: "Cancel",
+                                                    style: .cancel,
+                                                    handler: { [self]
+            (_) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+    }
+    
+    @IBOutlet weak var balanceCounter: UILabel!
+    @IBAction func TIME_FREEZEpressed(_ sender: Any) {
+        selectedPowerUP = PowerUpTypes.TIME_FREEZE
+        if delegate.w.canPayOrCannotPay(powerUp: selectedPowerUP) {
+            // Successfully bought the powerup
+            self.present(PurchasingAlert, animated: true, completion: nil)
+        } else {
+            // Unsuccessful
+            self.present(NotEnoughMoneyAlert, animated: true, completion: nil)
+        }
     }
     @IBAction func MEGA_NUKEpressed(_ sender: Any) {
-        delegate.w.addPowerUp(powerUp: PowerUpTypes.MEGA_NUKE)
+        selectedPowerUP = PowerUpTypes.MEGA_NUKE
+        if delegate.w.canPayOrCannotPay(powerUp: selectedPowerUP) {
+            self.present(PurchasingAlert, animated: true, completion: nil)
+        } else {
+            self.present(NotEnoughMoneyAlert, animated: true, completion: nil)
+        }
     }
     @IBAction func EXPLOSIONpressed(_ sender: Any) {
-        delegate.w.addPowerUp(powerUp: PowerUpTypes.EXPLOSION)
+        selectedPowerUP = PowerUpTypes.EXPLOSION
+        if delegate.w.canPayOrCannotPay(powerUp: selectedPowerUP) {
+            self.present(PurchasingAlert, animated: true,  completion: nil)
+        } else {
+            self.present(NotEnoughMoneyAlert, animated: true, completion: nil)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureAlerts()
+        balanceCounter.text = "$\(delegate.w.getTotalMoney())"
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
 }
