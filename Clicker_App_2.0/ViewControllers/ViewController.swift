@@ -25,6 +25,30 @@ class ViewController: UIViewController {
         incrementCounter()
         clicks += 1
     }
+    @IBOutlet weak var TIME_FREEZE_count: UILabel!
+    @IBOutlet weak var MEGA_NUKE_count: UILabel!
+    @IBOutlet weak var EXPLOSION_count: UILabel!
+    @IBOutlet weak var dumIndicator: UILabel!
+    
+    @IBAction func TIME_FREEZE_pressed(_ sender: Any) {
+        delegate.w.usePowerUp(powerUp: PowerUpTypes.TIME_FREEZE)
+        TIME_FREEZE_count.text = "Amount: \(delegate.w.powerUpCount(powerUp: PowerUpTypes.TIME_FREEZE))"
+        dumIndicator.text = "Time Freeze Used"
+        dumIndicator.isHidden = false
+    }
+    @IBAction func MEGA_NUKE_pressed(_ sender: Any) {
+        delegate.w.usePowerUp(powerUp: PowerUpTypes.MEGA_NUKE)
+        MEGA_NUKE_count.text = "Amount: \(delegate.w.powerUpCount(powerUp: PowerUpTypes.MEGA_NUKE))"
+        dumIndicator.text = "Mega Nuke Used"
+        dumIndicator.isHidden = false
+    }
+    @IBAction func EXPLOSION_pressed(_ sender: Any) {
+        delegate.w.usePowerUp(powerUp: PowerUpTypes.EXPLOSION)
+        EXPLOSION_count.text = "Amount: \(delegate.w.powerUpCount(powerUp: PowerUpTypes.EXPLOSION))"
+        dumIndicator.text = "Explosion Used"
+        dumIndicator.isHidden = false
+    }
+    
     
     @IBAction func LeaveGame(_ sender: Any) {
         self.timer.invalidate()
@@ -82,6 +106,10 @@ class ViewController: UIViewController {
         pointsLabel.text = "Points: 0 ;-;"
         CounterLabel.text = "$0"
         timeLeftLabel.text = "Time Left: \(String(format : "%.2f", self.timeLeftToResume))"
+        TIME_FREEZE_count.text = "Amount: \(delegate.w.powerUpCount(powerUp: PowerUpTypes.TIME_FREEZE))"
+        MEGA_NUKE_count.text = "Amount: \(delegate.w.powerUpCount(powerUp: PowerUpTypes.MEGA_NUKE))"
+        EXPLOSION_count.text = "Amount: \(delegate.w.powerUpCount(powerUp: PowerUpTypes.EXPLOSION))"
+        dumIndicator.isHidden = true
     }
     
     override func viewDidLoad() {

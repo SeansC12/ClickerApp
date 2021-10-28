@@ -79,5 +79,18 @@ public class Wallet {
             return true
         }
     }
+    
+    func powerUpCount(powerUp : PowerUpTypes) -> Int {
+        var counts : [PowerUpTypes : Int] = [:]
+        for i in _powerUps {
+            counts[i] = (counts[i] ?? 0) + 1
+        }
+        if counts[powerUp] == nil {
+            return 0
+        } else {
+            return counts[powerUp]!
+        }
+    }
 }
+
 
