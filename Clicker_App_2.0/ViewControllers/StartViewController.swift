@@ -49,11 +49,10 @@ class StartViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pressedPlay" {
-            let destination = segue.destination as! ViewController
+            segue.destination as! ViewController
             
         } else if segue.identifier == "pressedShop" {
-            let destination = segue.destination as! ShopViewController
-            
+            segue.destination as! ShopViewController
         }
     }
     

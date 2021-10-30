@@ -11,20 +11,34 @@ public class Wallet {
     //balance is the money-system in the whole game, while counter is the money-system within that 10 seconds or within the "game"
     
     private var _balance : Int = 0
-    private var _powerUps : [PowerUpTypes] = []
+    private var _powerUps : [PowerUpTypes : Int] = [:]
     private var _counter : Int = 0
     private var _addon : Int = 1
     private var _totalMoney : Int = 0
-    private var p = PriceMenu()
+    private var p : PriceMenu?
+    
+    init() {
+        for pType in PowerUpTypes.allCases {
+            self._powerUps[pType] = 0
+        }
+                
+    }
+    
+    func setPriceMenu(priceMenu : PriceMenu) {
+        self.p = priceMenu
+    }
     
     var counter : Int {
         get { return _counter }
     }
-    func incrementCounter() -> Int {
+    func incrementCounter() {
         _counter += _addon
         if _counter % 10 == 0 {
             _addon += 1
         }
+    }
+    
+    func currentPoints() -> Int {
         return _counter
     }
     
@@ -33,13 +47,12 @@ public class Wallet {
         return _balance
     }
     
-    func addtoTotalThePoints() -> Int {
+    func addtoTotalThePoints() {
         _totalMoney += _balance
-        return _totalMoney
     }
     
-    func getTotalMoney() -> Int {
-        return _totalMoney
+    func getTotalMoney() -> String {
+            return _totalMoney.roundedWithAbbreviations
     }
     
     func resetCounter() {
@@ -48,31 +61,22 @@ public class Wallet {
     }
     
     func addPowerUp(powerUp : PowerUpTypes) {
-        _powerUps.append(powerUp)
+        _powerUps[powerUp]! += 1
     }
     
-    func usePowerUp(powerUp : PowerUpTypes) -> PowerUpTypes {
-        var index : Int = 0
-        var usePowerUp : PowerUpTypes = PowerUpTypes.NOTHING //just to initialise the power
-        for i in _powerUps {
-            if i == powerUp {
-                usePowerUp = _powerUps.remove(at: index)
-                break
-            }
-            index += 1
-        }
-        return usePowerUp
+    func usePowerUp(powerUp : PowerUpTypes) {
+        _powerUps[powerUp]! -= 1
     }
     
     func buyPowerUp(powerUp : PowerUpTypes) {
-        let price = p.generatePriceList(PowerUpType: powerUp)
+        let price = p!.generatePriceList(PowerUpType: powerUp)
         _totalMoney -= price
         addPowerUp(powerUp: powerUp)
         print("this ->\(_powerUps)<- ->\(_powerUps.count)<- ")
     }
     
     func canPayOrCannotPay(powerUp : PowerUpTypes) -> Bool {
-        let price = p.generatePriceList(PowerUpType: powerUp)
+        let price = p!.generatePriceList(PowerUpType: powerUp)
         if (_totalMoney - price) < 0 {
             return false
         } else {
@@ -81,16 +85,14 @@ public class Wallet {
     }
     
     func powerUpCount(powerUp : PowerUpTypes) -> Int {
-        var counts : [PowerUpTypes : Int] = [:]
-        for i in _powerUps {
-            counts[i] = (counts[i] ?? 0) + 1
-        }
-        if counts[powerUp] == nil {
-            return 0
-        } else {
-            return counts[powerUp]!
+        let value = _powerUps[powerUp]!
+//        if value == nil {
+//            return 0
+//        } else {
+//            print(value)
+            return value
         }
     }
-}
+
 
 

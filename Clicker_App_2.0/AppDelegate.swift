@@ -9,12 +9,12 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    let w : Wallet = Wallet()
     let a : PriceMenu = PriceMenu()
+    let w : Wallet = Wallet()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        w.setPriceMenu(priceMenu: a)
         return true
     }
 

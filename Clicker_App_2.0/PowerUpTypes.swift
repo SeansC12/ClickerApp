@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum PowerUpTypes {
+public enum PowerUpTypes: CaseIterable {
     case NOTHING
     case TIME_FREEZE
     case EXPLOSION

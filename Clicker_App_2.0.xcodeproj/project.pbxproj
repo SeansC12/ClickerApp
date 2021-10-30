@@ -14,6 +14,7 @@
 		143F748A26EF384300288D2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 143F748926EF384300288D2A /* Assets.xcassets */; };
 		143F748D26EF384300288D2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 143F748B26EF384300288D2A /* LaunchScreen.storyboard */; };
 		143F749526EF449800288D2A /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F749426EF449800288D2A /* ResultsViewController.swift */; };
+		147572B4272CF4A5006FC965 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147572B3272CF4A5006FC965 /* Extensions.swift */; };
 		14820137271BA6E20030C95C /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14820136271BA6E20030C95C /* Wallet.swift */; };
 		14820139271BAB2C0030C95C /* PowerUpTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14820138271BAB2C0030C95C /* PowerUpTypes.swift */; };
 		148EE721271BCE0C0098015B /* PriceMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148EE720271BCE0C0098015B /* PriceMenu.swift */; };
@@ -33,6 +34,7 @@
 		143F748C26EF384300288D2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		143F748E26EF384300288D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		143F749426EF449800288D2A /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		147572B3272CF4A5006FC965 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		14820136271BA6E20030C95C /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		14820138271BAB2C0030C95C /* PowerUpTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpTypes.swift; sourceTree = "<group>"; };
 		148EE720271BCE0C0098015B /* PriceMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceMenu.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				145613FB27190E81005BC758 /* ViewControllers */,
 				14820136271BA6E20030C95C /* Wallet.swift */,
+				147572B3272CF4A5006FC965 /* Extensions.swift */,
 				14820138271BAB2C0030C95C /* PowerUpTypes.swift */,
 				148EE720271BCE0C0098015B /* PriceMenu.swift */,
 				143F748026EF384200288D2A /* AppDelegate.swift */,
@@ -169,6 +172,7 @@
 				148EE721271BCE0C0098015B /* PriceMenu.swift in Sources */,
 				14820139271BAB2C0030C95C /* PowerUpTypes.swift in Sources */,
 				143F748526EF384200288D2A /* ViewController.swift in Sources */,
+				147572B4272CF4A5006FC965 /* Extensions.swift in Sources */,
 				149C4FF02717F1E5005D0D5D /* StartViewController.swift in Sources */,
 				14156365271AA5360031EED9 /* SettingsViewController.swift in Sources */,
 				143F748126EF384200288D2A /* AppDelegate.swift in Sources */,
