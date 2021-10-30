@@ -30,7 +30,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var TIME_FREEZE_count: UILabel!
     @IBOutlet weak var MEGA_NUKE_count: UILabel!
     @IBOutlet weak var EXPLOSION_count: UILabel!
-
     
     @IBAction func TIME_FREEZE_pressed(_ sender: Any) {
         if delegate.w.powerUpCount(powerUp: PowerUpTypes.TIME_FREEZE) >= 1 {
@@ -145,11 +144,11 @@ class ViewController: UIViewController {
         self.timer.invalidate()
         var timePaused : Double = 10
         var timerleft = Timer()
-        timerleft = Timer.scheduledTimer(withTimeInterval: 0.01,
+        timerleft = Timer.scheduledTimer(withTimeInterval: 0.1,
                                              repeats: true,
                                          block: { [self]
             (_) in
-            timePaused -= 0.15
+            timePaused -= 0.1
             self.incrementCounter()
             self.CounterLabel.text = "\("$" + String(delegate.w.currentPoints()))"
             if timePaused <= 0 {
@@ -221,5 +220,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-

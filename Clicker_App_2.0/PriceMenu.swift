@@ -13,9 +13,9 @@ public class PriceMenu {
     
     func generatePriceList(PowerUpType : PowerUpTypes) -> Int {
         let pricelist : [PowerUpTypes : Int] = [PowerUpTypes.NOTHING : 0,
-                                                PowerUpTypes.TIME_FREEZE : 2,
-                                                PowerUpTypes.EXPLOSION : 1,
-                                                PowerUpTypes.MEGA_NUKE : 1]
+                                                PowerUpTypes.TIME_FREEZE : 20,
+                                                PowerUpTypes.EXPLOSION : 100,
+                                                PowerUpTypes.MEGA_NUKE : 50]
         let price = pricelist[PowerUpType]!
         return Int(price)
     }

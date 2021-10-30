@@ -31,7 +31,7 @@ class ResultsViewController: UIViewController {
         configureitems()
         // Do any additional setup after loading the view.
         clicksLabel.text = "Amount Earned: $\(moneyearned!)"
-        clicksPerSecondLabel.text = "Amount Earned Per Second: $\(clickspersecond())"
+        clicksPerSecondLabel.text = "Clicks Per Second: \(clickspersecond())"
     }
     
     

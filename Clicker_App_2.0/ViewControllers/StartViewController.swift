@@ -15,10 +15,12 @@ class StartViewController: UIViewController {
         self.performSegue(withIdentifier: "pressedPlay", sender: self)
     }
     @IBAction func shopButton(_ sender: Any) {
-        performSegue(withIdentifier: "pressedShop", sender: self)
+        self.performSegue(withIdentifier: "pressedShop", sender: self)
     }
     @IBAction func creditsButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "pressedCredits", sender: self)
     }
+    
     @IBAction func BackToStart1(_ seg: UIStoryboardSegue) {
     }
     @IBAction func BackToStart2(_ seg: UIStoryboardSegue) {
@@ -50,9 +52,10 @@ class StartViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pressedPlay" {
             segue.destination as! ViewController
-            
         } else if segue.identifier == "pressedShop" {
             segue.destination as! ShopViewController
+        } else if segue.identifier == "pressedCredits" {
+            segue.destination as! CreditsViewController
         }
     }
     

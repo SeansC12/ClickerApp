@@ -86,10 +86,6 @@ public class Wallet {
     
     func powerUpCount(powerUp : PowerUpTypes) -> Int {
         let value = _powerUps[powerUp]!
-//        if value == nil {
-//            return 0
-//        } else {
-//            print(value)
             return value
         }
     }
