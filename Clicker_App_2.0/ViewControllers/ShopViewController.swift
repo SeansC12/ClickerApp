@@ -1,5 +1,5 @@
 //
-//  shopViewController.swift
+//  ShopViewController.swift
 //  Clicker_App_2.0
 //
 //  Created by SEAN ULRIC BUGUINA CHUA stu on 14/10/21.
